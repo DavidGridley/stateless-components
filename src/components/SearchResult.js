@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class SearchResult extends React.Component {
-  render(){
-    const { snippet } = this.props.result;
-    const { videoId } = this.props.result.id;
-    const { description, title, thumbnails } = snippet;
-    const { height, width, url } = thumbnails.default;
-    return (
-      <li
+
+function SearchResult({result}){
+  const { snippet } = result;
+  const { videoId } = result.id;
+  const { description, title, thumbnails } = snippet;
+  const { height, width, url } = thumbnails.default;
+
+  return (
+          <li
         className="result-item"
         onClick={ event => {
           this.props.playVideo(videoId);
@@ -26,8 +28,13 @@ class SearchResult extends React.Component {
           {description}
         </div>
       </li>
-    );
-  }
+  );
+
+}
+
+SearchResult.propTypes = {
+  result: PropTypes.object,
+  id: PropTypes.object,
 };
 
 export default SearchResult;
